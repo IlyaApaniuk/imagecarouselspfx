@@ -1,0 +1,42 @@
+.slideButtonCtn {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-15px);
+    transition: all 0.5s;
+    z-index: 1;
+
+    .slideButton {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: 0;
+        background: 0 0;
+        min-width: 20px;
+        margin-left: 0;
+        line-height: 40px;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        color: #ffffff;
+        background-color: #1d1d1d;
+        opacity: 0.6;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    i {
+        font-size: 28px;
+        padding: 4px;
+        margin: 0;
+    }
+
+    &.nextButton {
+        right: 0px;
+    }
+
+    &.prevButton {
+        left: 0px;
+    }
+}

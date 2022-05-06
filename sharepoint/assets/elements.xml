@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+    <!-- Fields -->
+
+    <Field ID="{F068A942-B6CA-417F-97A8-06A43ECAA707}"
+            Name="carousel_description"
+            DisplayName="Description"
+            Type="Note"
+            RichText="FALSE"
+            Required="FALSE"
+            Group="Carousel Fields" />
+
+    <Field ID="{F993D481-899A-49BF-8A49-0D386B8CD4F3}"
+            Name="carousel_image"
+            DisplayName="Image"
+            Type="Thumbnail"
+            Required="TRUE"
+            Group="Carousel Fields" />
+
+    <Field ID="{4B6D32E1-A919-4BE8-A845-1E5C57E9BC17}"
+            Name="carousel_url"
+            DisplayName="Link"
+            Type="URL"
+            Required="FALSE"
+            Group="Carousel Fields" />
+
+    <!-- /Fields -->
+
+    <ContentType ID="0x010042D0C1C200A14B6887742B6344679A8B"
+            Name="Carousel"
+            Group="Carousel Content Types"
+            Description="Carousel solution content type">
+        <FieldRefs>
+	    <FieldRef ID="{F993D481-899A-49BF-8A49-0D386B8CD4F3}" />
+            <FieldRef ID="{4B6D32E1-A919-4BE8-A845-1E5C57E9BC17}" />
+            <FieldRef ID="{F068A942-B6CA-417F-97A8-06A43ECAA707}" />
+        </FieldRefs>
+    </ContentType>
+
+    <ListInstance
+            CustomSchema="schemaCarousel.xml"
+            FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+            Title="Carousel"
+            Description="Carousel List"
+            TemplateType="100"
+            Url="Lists/Carousel">
+    </ListInstance>
+
+</Elements>

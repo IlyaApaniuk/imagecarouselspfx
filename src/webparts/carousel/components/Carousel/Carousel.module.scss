@@ -1,0 +1,59 @@
+.carouselWrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+
+    &:active,
+    &:focus,
+    &:hover {
+        :global .arrow-button {
+            opacity: 1;
+        }
+
+        .fullScreenButton {
+            opacity: 0.6;
+        }
+    }
+
+    &.fullScreenView {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        margin-top: 0;
+        z-index: 99999;
+    }
+
+    .spinner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sliderWrapper {
+        height: inherit;
+
+        :global .slick-list {
+            height: inherit;
+        }
+    }
+
+    .fullScreenButton {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: 0;
+        background: 0 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        color: #ffffff;
+        background-color: #1d1d1d;
+        transition: all 0.5s;
+    }
+}
