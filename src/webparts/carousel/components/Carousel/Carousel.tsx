@@ -9,8 +9,10 @@ import { ICarouselItem } from "../../models/ICarouselItem";
 import CarouselService from "../../services/CarouselService";
 import Item from "../Item/Item";
 import ArrowButton from "../ArrowButton/ArrowButton";
+import TextPosition from "../../models/TextPosition";
 
 import styles from "./Carousel.module.scss";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -23,9 +25,20 @@ export interface ICarouselProps {
     autoplaySpeed: number;
     isEditMode: boolean;
     sliderHeight: number;
+    textPosition: TextPosition;
 }
 
-const Carousel: React.FC<ICarouselProps> = ({ fontSize, fontColor, shouldRenderTitle, shouldRenderArrows, serviceScope, autoplaySpeed, isEditMode, sliderHeight }) => {
+const Carousel: React.FC<ICarouselProps> = ({
+    fontSize,
+    fontColor,
+    shouldRenderTitle,
+    shouldRenderArrows,
+    serviceScope,
+    autoplaySpeed,
+    isEditMode,
+    sliderHeight,
+    textPosition
+}) => {
     const [items, setItems] = React.useState<ICarouselItem[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);
     const [isFullScreen, setFullScreen] = React.useState<boolean>(false);
@@ -72,6 +85,8 @@ const Carousel: React.FC<ICarouselProps> = ({ fontSize, fontColor, shouldRenderT
                                 shouldRenderTitle={shouldRenderTitle}
                                 isEditMode={isEditMode}
                                 sliderHeight={isFullScreen ? "100%" : sliderHeight}
+                                bottomPersents={isFullScreen ? "25%" : "10%"}
+                                textPosition={textPosition}
                             />
                         ))}
                     </Slider>

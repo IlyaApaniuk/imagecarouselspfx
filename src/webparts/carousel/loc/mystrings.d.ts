@@ -7,6 +7,10 @@ declare interface ICarouselWebPartStrings {
   ShouldRenderArrows: string;
   AutoplaySpeed: string;
   SliderHeight: string;
+  TextPosition: string;
+  LeftTextPosion: string;
+  CenterTextPosion: string;
+  RightTextPosion: string;
 }
 
 declare module 'CarouselWebPartStrings' {

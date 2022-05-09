@@ -1,12 +1,13 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { DisplayMode, Version } from "@microsoft/sp-core-library";
-import { IPropertyPaneConfiguration, PropertyPaneToggle, PropertyPaneSlider } from "@microsoft/sp-property-pane";
+import { IPropertyPaneConfiguration, PropertyPaneToggle, PropertyPaneSlider, PropertyPaneDropdown } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import * as strings from "CarouselWebPartStrings";
 import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from "@pnp/spfx-property-controls";
 
 import Carousel, { ICarouselProps } from "./components/Carousel/Carousel";
+import TextPosition from "./models/TextPosition";
 
 export interface ICarouselWebPartProps {
     fontSize: number;
@@ -15,6 +16,7 @@ export interface ICarouselWebPartProps {
     shouldRenderArrows: boolean;
     autoplaySpeed: number;
     sliderHeight: number;
+    textPosition: TextPosition;
 }
 
 export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebPartProps> {
@@ -27,7 +29,8 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
             serviceScope: this.context.serviceScope,
             autoplaySpeed: isNaN(this.properties.autoplaySpeed) ? 1000 : this.properties.autoplaySpeed * 1000,
             isEditMode: this.displayMode === DisplayMode.Edit,
-            sliderHeight: isNaN(this.properties.sliderHeight) ? 200 : this.properties.sliderHeight
+            sliderHeight: isNaN(this.properties.sliderHeight) ? 200 : this.properties.sliderHeight,
+            textPosition: this.properties.textPosition || TextPosition.Left
         });
 
         ReactDom.render(element, this.domElement);
@@ -74,6 +77,24 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
                                 PropertyPaneToggle("shouldRenderTitle", {
                                     label: strings.ShouldRenderTitle,
                                     checked: this.properties.shouldRenderTitle
+                                }),
+                                PropertyPaneDropdown("textPosition", {
+                                    label: strings.TextPosition,
+                                    selectedKey: this.properties.textPosition,
+                                    options: [
+                                        {
+                                            key: TextPosition.Left,
+                                            text: strings.LeftTextPosion
+                                        },
+                                        {
+                                            key: TextPosition.Center,
+                                            text: strings.CenterTextPosion
+                                        },
+                                        {
+                                            key: TextPosition.Right,
+                                            text: strings.RightTextPosion
+                                        }
+                                    ]
                                 })
                             ]
                         },
@@ -94,7 +115,7 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
                                     label: strings.SliderHeight,
                                     value: this.properties.sliderHeight,
                                     min: 200,
-                                    max: 600
+                                    max: 500
                                 })
                             ]
                         }

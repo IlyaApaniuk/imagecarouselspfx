@@ -14,7 +14,7 @@
     <Field ID="{F993D481-899A-49BF-8A49-0D386B8CD4F3}"
             Name="carousel_image"
             DisplayName="Image"
-            Type="Thumbnail"
+            Type="URL"
             Required="TRUE"
             Group="Carousel Fields" />
 
