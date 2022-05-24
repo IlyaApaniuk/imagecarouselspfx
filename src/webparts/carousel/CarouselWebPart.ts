@@ -4,10 +4,12 @@ import { DisplayMode, Version } from "@microsoft/sp-core-library";
 import { IPropertyPaneConfiguration, PropertyPaneToggle, PropertyPaneSlider, PropertyPaneDropdown } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import * as strings from "CarouselWebPartStrings";
-import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from "@pnp/spfx-property-controls";
+import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle, PropertyFieldMultiSelect } from "@pnp/spfx-property-controls";
 
 import Carousel, { ICarouselProps } from "./components/Carousel/Carousel";
 import TextPosition from "./models/TextPosition";
+import { ICarouselItem } from "./models/ICarouselItem";
+import CarouselService from "./services/CarouselService";
 
 export interface ICarouselWebPartProps {
     fontSize: number;
@@ -17,19 +19,32 @@ export interface ICarouselWebPartProps {
     autoplaySpeed: number;
     sliderHeight: number;
     textPosition: TextPosition;
+    selectedItems: number[];
 }
 
 export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebPartProps> {
+    private items: ICarouselItem[] = [];
+
+    protected async onInit(): Promise<void> {
+        const service = this.context.serviceScope.consume(CarouselService.serviceKey);
+
+        this.items = await service.getCarouselItems();
+
+        return super.onInit();
+    }
+
     public render(): void {
         const element: React.ReactElement<ICarouselProps> = React.createElement(Carousel, {
-            fontSize: this.properties.fontSize || 14,
+            fontSize: this.properties.fontSize,
             fontColor: this.properties.fontColor,
             shouldRenderTitle: this.properties.shouldRenderTitle,
             shouldRenderArrows: this.properties.shouldRenderArrows,
-            serviceScope: this.context.serviceScope,
-            autoplaySpeed: isNaN(this.properties.autoplaySpeed) ? 1000 : this.properties.autoplaySpeed * 1000,
+            selectedItems: this.items.filter(item => {
+                return this.properties.selectedItems?.some(id => id === item.id);
+            }),
+            autoplaySpeed: this.properties.autoplaySpeed * 1000,
             isEditMode: this.displayMode === DisplayMode.Edit,
-            sliderHeight: isNaN(this.properties.sliderHeight) ? 200 : this.properties.sliderHeight,
+            sliderHeight: this.properties.sliderHeight,
             textPosition: this.properties.textPosition || TextPosition.Left
         });
 
@@ -101,6 +116,17 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
                         {
                             groupName: strings.OtherSettings,
                             groupFields: [
+                                PropertyFieldMultiSelect("selectedItems", {
+                                    key: "selectedItemsId",
+                                    label: strings.SelectedItemsLabel,
+                                    selectedKeys: this.properties.selectedItems,
+                                    options: this.items.map(item => {
+                                        return {
+                                            key: item.id,
+                                            text: item.title
+                                        };
+                                    })
+                                }),
                                 PropertyPaneToggle("shouldRenderArrows", {
                                     label: strings.ShouldRenderArrows,
                                     checked: this.properties.shouldRenderArrows

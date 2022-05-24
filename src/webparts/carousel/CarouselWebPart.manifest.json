@@ -18,7 +18,10 @@
     "officeFabricIconFontName": "Page",
     "iconImageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAoUlEQVRoge3ZUQqAIBCE4S26/6Wqc9lbkGK6mTLF/0FvgjMrvagZAPzZbmZhwLd6g03O9cG7QQNvtovaiff06NTi1rUhm6ZV4BnUmWMpLWjYpNXdsJIcc8cgQ1FEDUXUUEQNRdRQRA1F1FBEDUXUUEQNRdRQRA1F1FBEDUXU5G7jR96657gyxCeyvRikt9uHnhKV95GE9x8ZdWLux1AA+JYDYz06OssxlmIAAAAASUVORK5CYII=",
     "properties": {
-      "description": "Carousel"
+      "sliderHeight": 300,
+      "autoplaySpeed": 3,
+      "fontSize": 14,
+      "textPosition": "flex-start"
     }
   }]
 }

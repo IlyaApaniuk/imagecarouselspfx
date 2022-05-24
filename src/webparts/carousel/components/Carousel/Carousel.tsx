@@ -1,12 +1,10 @@
 import * as React from "react";
-import { ServiceScope } from "@microsoft/sp-core-library";
 import Slider, { Settings } from "react-slick";
-import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
 import { IconButton } from "@fluentui/react/lib/Button";
 import classNames from "classnames";
+import * as strings from "CarouselWebPartStrings";
 
 import { ICarouselItem } from "../../models/ICarouselItem";
-import CarouselService from "../../services/CarouselService";
 import Item from "../Item/Item";
 import ArrowButton from "../ArrowButton/ArrowButton";
 import TextPosition from "../../models/TextPosition";
@@ -21,11 +19,11 @@ export interface ICarouselProps {
     fontColor: string;
     shouldRenderTitle: boolean;
     shouldRenderArrows: boolean;
-    serviceScope: ServiceScope;
     autoplaySpeed: number;
     isEditMode: boolean;
     sliderHeight: number;
     textPosition: TextPosition;
+    selectedItems: ICarouselItem[];
 }
 
 const Carousel: React.FC<ICarouselProps> = ({
@@ -33,14 +31,12 @@ const Carousel: React.FC<ICarouselProps> = ({
     fontColor,
     shouldRenderTitle,
     shouldRenderArrows,
-    serviceScope,
     autoplaySpeed,
     isEditMode,
+    selectedItems,
     sliderHeight,
     textPosition
 }) => {
-    const [items, setItems] = React.useState<ICarouselItem[]>([]);
-    const [loading, setLoading] = React.useState<boolean>(false);
     const [isFullScreen, setFullScreen] = React.useState<boolean>(false);
 
     const settings: Settings = {
@@ -56,27 +52,16 @@ const Carousel: React.FC<ICarouselProps> = ({
         nextArrow: <ArrowButton direction="next" />
     };
 
-    React.useEffect(() => {
-        const getItems = async () => {
-            setLoading(true);
-            const service = serviceScope.consume(CarouselService.serviceKey);
-            const result = await service.getCarouselItems();
-
-            setItems(result);
-            setLoading(false);
-        };
-
-        getItems();
-    }, [serviceScope]);
-
     return (
         <div className={classNames(styles.carouselWrapper, isFullScreen ? styles.fullScreenView : "")} style={{ height: isFullScreen ? "100%" : sliderHeight }}>
-            {loading ? (
-                <Spinner className={styles.spinner} size={SpinnerSize.large} />
+            {selectedItems.length === 0 ? (
+                <div className={styles.titleWrapper}>
+                    <h4>{strings.NoItemsSelectedLabel}</h4>
+                </div>
             ) : (
                 <>
                     <Slider {...settings} arrows={shouldRenderArrows} autoplaySpeed={autoplaySpeed}>
-                        {items.map(item => (
+                        {selectedItems.map(item => (
                             <Item
                                 key={item.id}
                                 item={item}

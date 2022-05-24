@@ -11,6 +11,8 @@ declare interface ICarouselWebPartStrings {
   LeftTextPosion: string;
   CenterTextPosion: string;
   RightTextPosion: string;
+  SelectedItemsLabel: string;
+  NoItemsSelectedLabel: string;
 }
 
 declare module 'CarouselWebPartStrings' {

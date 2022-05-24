@@ -11,6 +11,8 @@ define([], function() {
     "TextPosition": "Text position",
     "LeftTextPosion": "Left",
     "CenterTextPosion": "Center",
-    "RightTextPosion": "Right"
+    "RightTextPosion": "Right",
+    "SelectedItemsLabel": "Select items to show",
+    "NoItemsSelectedLabel": "There are no items selected to show."
   }
 });
