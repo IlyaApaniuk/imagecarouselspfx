@@ -9,7 +9,8 @@ export default function parseCarouselItems(items: unknown[]): ICarouselItem[] | 
                 title: i[constants.listFields.title],
                 imageSrc: i[constants.listFields.imageSrc]?.Url,
                 link: i[constants.listFields.link]?.Url,
-                description: i[constants.listFields.description]
+                description: i[constants.listFields.description],
+                filterField: i[constants.listFields.filterField]
             } as ICarouselItem;
         });
     } catch (e) {

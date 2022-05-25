@@ -22,7 +22,7 @@ export default class CarouselService {
 
     public async getCarouselItems(): Promise<ICarouselItem[]> {
         try {
-            const params = `$select=${constants.listFields.id},${constants.listFields.title},${constants.listFields.imageSrc},${constants.listFields.link},${constants.listFields.description}`;
+            const params = `$select=${constants.listFields.id},${constants.listFields.title},${constants.listFields.imageSrc},${constants.listFields.link},${constants.listFields.description},${constants.listFields.filterField}`;
             const url = this.listUrlBuilder(constants.listName, "items", null, params);
             const listItems = await this.getListItems<ICarouselItem>(url, parseCarouselItems);
 

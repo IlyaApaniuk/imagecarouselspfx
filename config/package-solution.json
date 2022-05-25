@@ -3,14 +3,14 @@
   "solution": {
     "name": "imagecarousel-client-side-solution",
     "id": "c9565e19-e95b-431c-b017-d80c30813a3a",
-    "version": "1.0.0.6",
+    "version": "1.0.0.7",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "features": [{
       "title": "asset-deployment-webpart-client-side-solution",
       "description": "asset-deployment-webpart-client-side-solution",
       "id": "f57149bf-d160-4833-b050-8821883c705d",
-      "version": "1.0.0.6",
+      "version": "1.0.0.7",
       "assets": {
         "elementManifests": [
           "elements.xml"

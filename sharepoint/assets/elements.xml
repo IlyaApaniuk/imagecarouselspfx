@@ -25,6 +25,13 @@
             Required="FALSE"
             Group="Carousel Fields" />
 
+    <Field ID="{DF31E0A2-ED85-483E-A662-C17F317A4673}"
+            Name="carousel_filter"
+            DisplayName="Image to Filter"
+            Type="Text"
+            Required="FALSE"
+            Group="Carousel Fields" />
+
     <!-- /Fields -->
 
     <ContentType ID="0x010042D0C1C200A14B6887742B6344679A8B"
@@ -35,6 +42,7 @@
 	    <FieldRef ID="{F993D481-899A-49BF-8A49-0D386B8CD4F3}" />
             <FieldRef ID="{4B6D32E1-A919-4BE8-A845-1E5C57E9BC17}" />
             <FieldRef ID="{F068A942-B6CA-417F-97A8-06A43ECAA707}" />
+            <FieldRef ID="{DF31E0A2-ED85-483E-A662-C17F317A4673}" />
         </FieldRefs>
     </ContentType>
 

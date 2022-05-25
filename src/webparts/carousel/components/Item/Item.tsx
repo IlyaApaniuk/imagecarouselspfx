@@ -14,16 +14,26 @@ export interface IItemProps {
     sliderHeight: number | string;
     textPosition: TextPosition;
     bottomPersents: string;
+    textGap: number;
 }
 
-const Item: React.FC<IItemProps> = ({ item, fontSize, fontColor, shouldRenderTitle, isEditMode, sliderHeight, textPosition, bottomPersents }) => {
+const Item: React.FC<IItemProps> = ({ item, fontSize, fontColor, shouldRenderTitle, isEditMode, sliderHeight, textPosition, bottomPersents, textGap }) => {
     return (
         <div className={styles.itemWrapper} style={{ height: sliderHeight }}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href={!item.link || isEditMode ? undefined : item.link} data-interception="off" rel="noopener noreferrer" target="_blank">
                 <img src={item.imageSrc} className={styles.image} alt="logo" height={sliderHeight} />
                 {shouldRenderTitle && (
-                    <div className={styles.titleWrapper} style={{ color: fontColor, alignItems: textPosition, bottom: bottomPersents }}>
+                    <div
+                        className={styles.titleWrapper}
+                        style={{
+                            color: fontColor,
+                            alignItems: textPosition,
+                            bottom: bottomPersents,
+                            // eslint-disable-next-line no-nested-ternary
+                            left: textPosition === TextPosition.Left ? textGap : textPosition === TextPosition.Center ? 0 : -textGap
+                        }}
+                    >
                         <span style={{ fontSize }}>{item.title}</span>
                         <span className={styles.description}>{item.description}</span>
                     </div>

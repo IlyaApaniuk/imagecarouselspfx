@@ -24,6 +24,7 @@ export interface ICarouselProps {
     sliderHeight: number;
     textPosition: TextPosition;
     selectedItems: ICarouselItem[];
+    textGap: number;
 }
 
 const Carousel: React.FC<ICarouselProps> = ({
@@ -35,7 +36,8 @@ const Carousel: React.FC<ICarouselProps> = ({
     isEditMode,
     selectedItems,
     sliderHeight,
-    textPosition
+    textPosition,
+    textGap
 }) => {
     const [isFullScreen, setFullScreen] = React.useState<boolean>(false);
 
@@ -72,6 +74,7 @@ const Carousel: React.FC<ICarouselProps> = ({
                                 sliderHeight={isFullScreen ? "100%" : sliderHeight}
                                 bottomPersents={isFullScreen ? "25%" : "10%"}
                                 textPosition={textPosition}
+                                textGap={textGap}
                             />
                         ))}
                     </Slider>

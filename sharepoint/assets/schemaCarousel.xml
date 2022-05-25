@@ -17,6 +17,7 @@
           <FieldRef Name="carousel_image"></FieldRef>
           <FieldRef Name="carousel_url"></FieldRef>
           <FieldRef Name="carousel_description"></FieldRef>
+          <FieldRef Name="carousel_filter"></FieldRef>
         </ViewFields>
         <Query>
           <OrderBy>

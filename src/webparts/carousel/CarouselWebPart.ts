@@ -20,6 +20,7 @@ export interface ICarouselWebPartProps {
     sliderHeight: number;
     textPosition: TextPosition;
     selectedItems: number[];
+    textGap: number;
 }
 
 export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebPartProps> {
@@ -45,7 +46,8 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
             autoplaySpeed: this.properties.autoplaySpeed * 1000,
             isEditMode: this.displayMode === DisplayMode.Edit,
             sliderHeight: this.properties.sliderHeight,
-            textPosition: this.properties.textPosition || TextPosition.Left
+            textPosition: this.properties.textPosition || TextPosition.Left,
+            textGap: this.properties.textGap
         });
 
         ReactDom.render(element, this.domElement);
@@ -110,6 +112,12 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
                                             text: strings.RightTextPosion
                                         }
                                     ]
+                                }),
+                                PropertyPaneSlider("textGap", {
+                                    label: strings.TextGapLabel,
+                                    value: this.properties.textGap,
+                                    min: 0,
+                                    max: 100
                                 })
                             ]
                         },
@@ -123,7 +131,7 @@ export default class CarouselWebPart extends BaseClientSideWebPart<ICarouselWebP
                                     options: this.items.map(item => {
                                         return {
                                             key: item.id,
-                                            text: item.title
+                                            text: item.filterField
                                         };
                                     })
                                 }),

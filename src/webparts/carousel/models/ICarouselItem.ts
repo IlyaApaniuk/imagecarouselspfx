@@ -4,4 +4,5 @@ export interface ICarouselItem {
     imageSrc: string;
     link?: string;
     description: string;
+    filterField: string;
 }

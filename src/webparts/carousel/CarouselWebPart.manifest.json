@@ -21,7 +21,8 @@
       "sliderHeight": 300,
       "autoplaySpeed": 3,
       "fontSize": 14,
-      "textPosition": "flex-start"
+      "textPosition": "flex-start",
+      "textGap": 5
     }
   }]
 }
